@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductMyPriceRequestDto {
-    private int myPrice;
+    private int myprice;
 }
