@@ -1,0 +1,16 @@
+spring:
+  config:
+    import:
+      - application-local.yml
+      - application-secret.yml
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shop
+  jpa:
+    properties:
+      hibernate:
+        format_sql: 'true'
+        use_sql_comments: 'true'
+        show_sql: 'true'
+    hibernate:
+      ddl-auto: update
