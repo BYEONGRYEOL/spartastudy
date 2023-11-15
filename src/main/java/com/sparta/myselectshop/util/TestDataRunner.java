@@ -19,6 +19,9 @@ import java.util.List;
 
 import static com.sparta.myselectshop.service.ProductService.MY_PRICE_MIN;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j(topic = "Test Data")
 @Component
 public class TestDataRunner implements ApplicationRunner {
 
@@ -36,8 +39,13 @@ public class TestDataRunner implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) {
 		// 테스트 User 생성
-		User testUser = new User("b", passwordEncoder.encode("b"), "b@b", UserRoleEnum.USER);
-		testUser = userRepository.save(testUser);
+		User testUser;
+		try{
+			testUser = userRepository.save(new User("b", passwordEncoder.encode("b"), "b@b", UserRoleEnum.USER));
+		}
+		catch (Exception e){
+			testUser = userRepository.findByUsername("b").orElseThrow(RuntimeException::new);
+		}
 
 		// 테스트 User 의 관심상품 등록
 		// 검색어 당 관심상품 10개 등록
